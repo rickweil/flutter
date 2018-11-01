@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './text_list.dart';
+import './text_add.dart';
 
 class TextControl extends StatefulWidget {
   final List<String> initStrings;
@@ -21,18 +22,15 @@ class _TextControl extends State<TextControl> {
     _textStrings = widget.initStrings;
   }
 
+  void _addText(String foo) {
+    setState(() {
+      //_textStrings.add('text${_textStrings.length}');
+      _textStrings.add(foo);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      RaisedButton(
-          child: Text('Add text'),
-          color: Theme.of(context).primaryColor,
-          onPressed: () {
-            setState(() {
-              _textStrings.add('text${_textStrings.length}');
-            });
-          }),
-      TextList(stringList: _textStrings)
-    ]);
+    return Column(children: [TextAdd(_addText), TextList(stringList: _textStrings)]);
   }
 }
